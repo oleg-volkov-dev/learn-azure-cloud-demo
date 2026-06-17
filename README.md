@@ -1,4 +1,6 @@
-# learn-azure-cloud-demo
+# Learn Azure Cloud demo
+
+Project with a purpose to explore/get some hads on experience with Azure Cloud.
 
 A minimal real-time fraud-scoring REST API built with FastAPI, containerized with Docker, and deployed to **Azure Container Apps** via **Azure Container Registry**. Built to demonstrate a practical Azure MLOps deployment flow for real-time model serving.
 
