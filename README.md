@@ -1,10 +1,8 @@
-# Learn Azure Cloud demo
+# Learn Azure Cloud Demo
 
-Project with a purpose to explore/get some hads on experience with Azure Cloud.
+Exploring Azure Cloud through a small but complete MLOps deployment. The app is a real-time fraud-scoring REST API built with FastAPI, containerized with Docker, and deployed two ways: via **Azure Container Apps** and **Azure Kubernetes Service (AKS)**.
 
-A minimal real-time fraud-scoring REST API built with FastAPI, containerized with Docker, and deployed to **Azure Container Apps** via **Azure Container Registry**. Built to demonstrate a practical Azure MLOps deployment flow for real-time model serving.
-
-No real ML model — the scorer is a deterministic rule-based function that mimics a versioned model artefact, which is enough to exercise the full cloud deployment pipeline.
+No real ML model — the scorer is a deterministic rule-based function that mimics a versioned model artefact, which is enough to exercise the full deployment pipeline.
 
 ## API
 
@@ -14,24 +12,31 @@ No real ML model — the scorer is a deterministic rule-based function that mimi
 | `POST` | `/predict` | Score a transaction for fraud |
 
 ```bash
-# Run locally
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 # Swagger UI at http://localhost:8000/docs
 ```
 
-## Project structure
+## Structure
 
 ```
 app/
-├── main.py       # FastAPI app, middleware, routes
-├── model.py      # Deterministic fraud scorer + MODEL_VERSION
-└── schemas.py    # Pydantic request/response models
-Dockerfile
+├── main.py         # FastAPI app, middleware, routes
+├── model.py        # Deterministic fraud scorer
+└── schemas.py      # Pydantic request/response models
+k8s/
+├── deployment.yaml
+├── service.yaml
+├── ingress.yaml
+└── hpa.yaml
 docs/
-└── deployment.md # Full Azure deployment walkthrough
+├── deployment.md   # Container Apps walkthrough
+└── aks-deployment.md  # AKS walkthrough
 ```
 
 ## Deployment
 
-See [docs/deployment.md](docs/deployment.md) for the full step-by-step Azure deployment guide including production hardening notes.
+Two paths documented:
+
+- **Container Apps** — [docs/deployment.md](docs/deployment.md) — simpler, managed, less to configure
+- **AKS** — [docs/aks-deployment.md](docs/aks-deployment.md) — full Kubernetes, more visibility into how orchestration works
