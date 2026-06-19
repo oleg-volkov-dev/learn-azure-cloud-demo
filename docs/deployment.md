@@ -61,7 +61,7 @@ az login
 
 ```bash
 RESOURCE_GROUP=rg-fraud-demo
-LOCATION=eastus
+LOCATION=westus2
 ACR_NAME=frauddemoacr$RANDOM
 IMAGE_NAME=fraud-api
 IMAGE_TAG=v1.2.0
