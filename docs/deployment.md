@@ -62,7 +62,7 @@ az login
 ```bash
 RESOURCE_GROUP=rg-fraud-demo
 LOCATION=eastus
-ACR_NAME=frauddemoacr$RANDOM        # must be globally unique, alphanumeric only
+ACR_NAME=frauddemoacr$RANDOM
 IMAGE_NAME=fraud-api
 IMAGE_TAG=v1.2.0
 CONTAINER_APP_ENV=fraud-env
