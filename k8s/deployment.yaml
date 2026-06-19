@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-api
+  namespace: fraud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fraud-api
+  template:
+    metadata:
+      labels:
+        app: fraud-api
+    spec:
+      containers:
+        - name: fraud-api
+          image: frauddemoacr23114.azurecr.io/fraud-api:v1.2.0   # replaced below
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "250m"       # 0.25 of one CPU core
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:        # Kubernetes restarts the pod if this fails 3 times
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:       # Kubernetes only sends traffic once this passes
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
